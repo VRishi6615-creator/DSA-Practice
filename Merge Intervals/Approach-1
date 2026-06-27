@@ -1,0 +1,33 @@
+class Solution {
+    public int[][] merge(int[][] arr) {
+
+        Arrays.sort(arr, Comparator.comparingInt(a -> a[0]));
+
+        int[][] ans = new int[arr.length][2];
+
+        int idx = 0;
+
+        int start = arr[0][0];
+        int end = arr[0][1];
+
+        for (int i = 1; i < arr.length; i++) {
+
+            if (arr[i][0] <= end) {
+                end = Math.max(end, arr[i][1]);
+            } else {
+                ans[idx][0] = start;
+                ans[idx][1] = end;
+                idx++;
+
+                start = arr[i][0];
+                end = arr[i][1];
+            }
+        }
+
+        ans[idx][0] = start;
+        ans[idx][1] = end;
+        idx++;
+
+        return Arrays.copyOf(ans, idx);
+    }
+} 
