@@ -1,0 +1,12 @@
+public static TreeNode mirrorOfBst(TreeNode root){
+        if(root == null){
+            return null;
+        }
+        TreeNode leftMirror = mirrorOfBst(root.left);;
+        TreeNode rightMirror = mirrorOfBst(root.right);
+
+        root.left = rightMirror;
+        root.right = leftMirror;
+
+        return root;
+    }
